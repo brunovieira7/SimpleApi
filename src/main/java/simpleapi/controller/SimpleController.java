@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,18 +26,20 @@ import simpleapi.service.TimerService;
 @RestController
 public class SimpleController {
 
+	private Log LOG = LogFactory.getLog(SimpleController.class);
+	
 	@Autowired
 	private TimerService timerService;
 	
 	@RequestMapping(value="/timer/{id}", method=RequestMethod.GET)
 	public @ResponseBody Serializable getTime(@PathVariable("id") int id) throws Exception {
-		System.out.println("Getting ID "+ id);
+		LOG.info("Getting ID "+ id);
 		return timerService.getBestTime(id);
 	}
 	
 	@RequestMapping(value="/timer", method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> saveTime(@RequestBody SkillTimer skillTimer) throws Exception {
-		System.out.println("Saving ID "+ skillTimer.getId() +" " + skillTimer.getTime());
+		LOG.info("Saving ID "+ skillTimer.getId() +" " + skillTimer.getTime());
 		timerService.checkTime(skillTimer);
 		
 		HttpStatus status = HttpStatus.OK;

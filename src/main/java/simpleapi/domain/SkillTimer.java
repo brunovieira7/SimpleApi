@@ -13,11 +13,11 @@ public class SkillTimer implements Serializable {
 	private static final long serialVersionUID = -7731829501735932273L;
 	
 	private int id;
-	private long time;
+	private float time;
 	
 	public SkillTimer() { }
 
-	public SkillTimer(int id, long time) {
+	public SkillTimer(int id, float time) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -31,11 +31,11 @@ public class SkillTimer implements Serializable {
 		this.id = id;
 	}
 
-	public long getTime() {
+	public float getTime() {
 		return time;
 	}
 
-	public void setTime(long time) {
+	public void setTime(float time) {
 		this.time = time;
 	}
 

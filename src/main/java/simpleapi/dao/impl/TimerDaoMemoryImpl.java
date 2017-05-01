@@ -11,10 +11,10 @@ import simpleapi.exception.NotFoundException;
 @Repository("timerDaoMemoryImpl")
 public class TimerDaoMemoryImpl implements TimerDao{
 
-	private HashMap<Integer, Long> database;
+	private HashMap<Integer, Float> database;
 	
 	@Override
-	public long getTime(int id) throws NotFoundException {
+	public float getTime(int id) throws NotFoundException {
 		if (database == null)
 			initDatabase();
 			
@@ -27,14 +27,14 @@ public class TimerDaoMemoryImpl implements TimerDao{
 	
 	private void initDatabase() {
 		database = new HashMap<>();
-		database.put(Integer.valueOf(1), Long.valueOf(200));
-		database.put(Integer.valueOf(2), Long.valueOf(300));
-		database.put(Integer.valueOf(3), Long.valueOf(500));
+		database.put(Integer.valueOf(1), Float.valueOf(10));
+		database.put(Integer.valueOf(2), Float.valueOf(30));
+		database.put(Integer.valueOf(3), Float.valueOf(20));
 	}
 
 	@Override
 	public void saveTime(SkillTimer timer) {
-		database.put(Integer.valueOf(timer.getId()), Long.valueOf(timer.getTime()));
+		database.put(Integer.valueOf(timer.getId()), Float.valueOf(timer.getTime()));
 	}
 
 }

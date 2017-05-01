@@ -16,7 +16,7 @@ public class TimerServiceImpl implements TimerService {
 	
 	@Override
 	public SkillTimer getBestTime(int id) throws NotFoundException {
-		long timer = timerDao.getTime(id);
+		float timer = timerDao.getTime(id);
 		return new SkillTimer(id, timer);
 	}
 
